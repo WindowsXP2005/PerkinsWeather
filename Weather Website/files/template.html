@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forecast — [Name]</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main>
+    <a href="index.html" class="back-link">&larr; Back</a>
+
+    <div class="forecast-card">
+      <h1>[Name] — [City, State]</h1>
+      <p class="updated">Updated: <time id="current-date"></time></p>
+
+      <div class="temps">
+        <div>
+          <span class="value">[High]&deg;</span>
+          <span class="label">High</span>
+        </div>
+        <div>
+          <span class="value">[Low]&deg;</span>
+          <span class="label">Low</span>
+        </div>
+      </div>
+
+      <p class="rain-line">
+        Rain: <span class="rain-no">[No / Yes — e.g. "Yes, likely in the afternoon"]</span>
+      </p>
+
+      <p class="general">
+        [General weather — e.g. "Partly cloudy most of the day, clearing up by evening. Light breeze."]
+      </p>
+    </div>
+  </main>
+
+  <script src="date.js"></script>
+</body>
+</html>

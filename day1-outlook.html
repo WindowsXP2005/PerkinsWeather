@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Perkins Weather Forecast</title>
+    
+</head>
+
+<body>
+    <a href="index.html"><img src="Perkins_Weather.jpg" alt="Weather Icon" width="100" style="position: absolute; top: 15px; left: 15px; border: 2px solid black; border-radius: 15px;"></a>
+    <p class="updated" style="position: absolute; top: 210px; left: 5px; border: 2px solid black; border-radius: 15px;">Today's Date: <time id="current-date"></time></p>
+    <h1 style="text-align: center;">Severe Weather Outlook</h1> <img src="noaaleft.jpg" alt="Day 1 Outlook" width="200" style="display: block; margin: 0 auto;">
+    <br>
+    <main>
+      <img id="spc-outlook" 
+     src="https://www.weather.gov/wwamap/png/sgf.png" 
+     alt="SPC Day 1 Categorical Outlook - Missouri" 
+     width="500">
+<script>
+  setInterval(() => {
+    document.getElementById('spc-outlook').src =
+      "https://www.weather.gov/wwamap/png/sgf.png?t=" + Date.now();
+  }, 300000);
+</script>
+</script>
+    </main>
+   
+   
+   
+
+   
+
+
+<!---
+        <p>A Severe Weather Outlook is issued by the Storm Prediction Center (SPC) for the next 1-8 days.
+            <img src="noaaleft.jpg" alt="Day 1 Outlook">
+        </a>
+        <p>Day 1 Outlook</p>
+    -->
+    <script src="date.js"></script>
+    <br>
+    <p>Last Updated: 8/19/26 @ 9:55PM</p>
+</body>
+
+</html>

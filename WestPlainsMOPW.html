@@ -17,16 +17,58 @@
     <br>
     <main>
         <h>Temperatures</h>
-        <p>High: 86°F</p>
+        <p>High: 90°F</p>
         <p>Low: 68°F</p>
-        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;">Forecast: Partly to mostly cloudy through out the morning and into the afternoon. Thunderstorm chances going up in the afternoon, these storms could brin small hail to high wind gust. Check back tomorrow for a more indepth look. SPC OUTLOOK AVALIABLE BELOW. </p>
-        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;">Rain: 50%</p>
+        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;">Forecast: Mostly clear to start the morning then becoming partly cloudy in the afternoon. Temperatures climbing back into the 90s. </p>
+        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;">Rain: 5%</p>
     </main>
+        <!---The following gives real time updates from the West Plains ASOS Station-->
+        <p>Current Temperature:</p>
+        <div id="wp-weather" style="font-family: Arial, sans-serif; max-width: 260px; padding: 16px; border: 1px solid #ccc; border-radius: 8px; text-align: center;">
+  <div style="font-size: 13px; color: #666;">West Plains Municipal Airport (KUNO) (ASOS)</div>
+  <div id="wp-temp" style="font-size: 36px; font-weight: bold; margin: 6px 0;">--°F</div>
+  <div id="wp-updated" style="font-size: 11px; color: #999;">Loading...</div>
+</div>
+
+<script>
+async function updateWestPlainsTemp() {
+  const tempEl = document.getElementById("wp-temp");
+  const updatedEl = document.getElementById("wp-updated");
+
+  try {
+    const res = await fetch("https://api.weather.gov/stations/KUNO/observations/latest", {
+      headers: { "Accept": "application/geo+json" }
+    });
+    if (!res.ok) throw new Error("Request failed: " + res.status);
+    const data = await res.json();
+
+    const celsius = data.properties.temperature.value;
+    if (celsius === null) {
+      tempEl.textContent = "N/A";
+      updatedEl.textContent = "No current reading";
+      return;
+    }
+
+    const fahrenheit = (celsius * 9 / 5 + 32).toFixed(0);
+    tempEl.textContent = fahrenheit + "°F";
+
+    const obsTime = new Date(data.properties.timestamp);
+    updatedEl.textContent = "Updated " + obsTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  } catch (err) {
+    tempEl.textContent = "--°F";
+    updatedEl.textContent = "Unable to load data";
+    console.error("West Plains weather fetch failed:", err);
+  }
+}
+
+// Load immediately, then refresh every 10 minutes
+updateWestPlainsTemp();
+setInterval(updateWestPlainsTemp, 10 * 60 * 1000);
+</script>    
    
    
    
-   
-   
+    <!---
         <br>
         <br>
         <img src="noaaleft.jpg" alt="Day 1 Outlook" style="border: 2px solid black; border-radius: 15px;">
@@ -37,7 +79,9 @@
         
     <script src="date.js"></script>
     <br>
-    <p>Last Updated: 8/25/26 @ 10:00PM</p>
+    --->
+    <p>Last Updated: 8/26/26 @ 9:30PM</p>
+    
 </body>
 
 </html>

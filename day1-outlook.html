@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Perkins Wx" />
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script src="onesignal-init.js" defer></script>
     <title>Perkins Weather Forecast</title>
     
 </head>
@@ -32,6 +40,8 @@
     <script src="date.js"></script>
     <br>
     <p>Last Updated: 8/25/26 @ 10:00PM</p>
+    <button id="pw-install-btn" onclick="pwInstallApp()" style="display:none; position: fixed; bottom: 15px; right: 15px; z-index: 999; background:#2563eb; color:#fff; border:none; padding:10px 16px; border-radius: 25px; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); cursor:pointer;">📲 Install App</button>
+    <script src="pwa.js"></script>
 </body>
 
 </html>

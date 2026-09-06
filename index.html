@@ -16,43 +16,40 @@
 </head>
 
 <body>
-
-    <header>
-    <h1 style="text-align: center;">Forecasts</h1>
-    <img src="Missouri-Map-1265x1124-removebg-preview.png" alt="Weather Icon" width="400" style="display: block; margin: 0 auto;" >
-    <a href="Chicago.html"><img src="Perkins_Weather.jpg" alt="Weather Icon" width="100" style="position: absolute; top: 15px; left: 15px; border: 2px solid black; border-radius: 15px;"></a>
-    <br>
-    <p style="text-align: center;">Select an area to view the weather forecast</p>
-        <ul style="position: absolute; top: 160px; left: 230px; list-style: none; padding: 15px;background-color:rgb(3, 63, 63); border: 2px solid black; padding: 40px; margin-bottom: 10px; border-radius: 15px;">
-            <li><a href="WillowSpringsMOPW.html">Willow Springs Missouri</a></li>
-            <br>
-            <li><a href="SpringfeildMOPW.html">Springfield Missouri</a></li>
-            <br>
-            <li><a href="WestPlainsMOPW.html">West Plains Missouri</a></li>
-            <li style="text-indent: 10px; list-style: none; margin: 0;">---Junction Hill School</li>
-        </ul>
-
-    </header>
-    <br>
-
-    <main>
-        <div style="text-align: center;">
-            <div style="position: absolute; top: 180px; right: 120px; max-width: 300px; list-style: none; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 15px;">
-            <p>The heat dome has no signs of going away. Temperatures state round have been in the upper 90s, some already breaking 100°F. If you have not, you will before end of the week. Make sure you have some sunscreen if you plan on going outside. Drink plenty of fluids.(08/31/2026) </p>
+    <div class="page">
+        <div class="top-bar">
+            <a href="Chicago.html"><img src="Perkins_Weather.jpg" alt="Weather Icon"></a>
         </div>
-        <header style="text-align: center; font-weight: bold;"><h2>Radar</h2></header> 
-        <p>Last Updated: 2026-08-26 2:23 UTC (9:23 PM CDT) (There has been no rain, so no reason to update radar)</p>
-        <img src="RadarScopeExport_260826.gif" alt="Radar Images" style="border: 15px solid rgb(255, 255, 255); border-radius: 15px;" width="1000">
-        </div>
-        <br>
-        <br>
-        <div style="text-align: center;">
-            <div style="display: block; margin: 0 auto; max-width: 400px; list-style: none; padding: 20px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 15px;">
-            <p>Forecasts will be made the night before the next day. During severe weather events, updates will be provided as conditions change.</p>
-        </div>
-    </main>
 
-    <button id="pw-install-btn" onclick="pwInstallApp()" style="display:none; position: absolute; bottom: 15px; right: 15px; background:#2563eb; color:#fff; border:none; padding:10px 16px; border-radius: 25px; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); cursor:pointer;">📲 Install App</button>
-    <script src="pwa.js"></script>
+        <header>
+            <h1>Forecasts</h1>
+            <img src="Missouri-Map-1265x1124-removebg-preview.png" alt="Missouri Map" class="location-img" style="max-width: 320px;">
+            <p style="text-align: center;">Select an area to view the weather forecast</p>
+            <ul class="nav-card">
+                <li><a href="WillowSpringsMOPW.html">Willow Springs Missouri</a></li>
+                <li><a href="SpringfeildMOPW.html">Springfield Missouri</a></li>
+                <li><a href="WestPlainsMOPW.html">West Plains Missouri</a></li>
+                <li style="text-indent: 10px; list-style: none; margin: 0; font-size: 0.85rem; opacity: 0.85;">---Junction Hill School</li>
+            </ul>
+        </header>
+
+        <main>
+            <div class="info-box">
+                <p>The heat dome has no signs of going away. Temperatures state round have been in the upper 90s, some already breaking 100°F. If you have not, you will before end of the week. Make sure you have some sunscreen if you plan on going outside. Drink plenty of fluids.(08/31/2026) </p>
+            </div>
+
+            <h2 style="text-align: center;">Radar</h2>
+            <p style="text-align: center;">Last Updated: 2026-08-26 2:23 UTC (9:23 PM CDT) (There has been no rain, so no reason to update radar)</p>
+            <img src="RadarScopeExport_260826.gif" alt="Radar Images" class="full-img">
+
+            <div class="info-box" style="margin-top: 20px;">
+                <p>Forecasts will be made the night before the next day. During severe weather events, updates will be provided as conditions change.</p>
+            </div>
+        </main>
+
+        <p id="pw-ios-hint" class="ios-install-hint">📲 To install this app on iPhone: tap the Share icon, then "Add to Home Screen".</p>
+        <button id="pw-install-btn" onclick="pwInstallApp()" class="install-btn">📲 Install App</button>
+        <script src="pwa.js"></script>
+    </div>
 </body>
 </html>

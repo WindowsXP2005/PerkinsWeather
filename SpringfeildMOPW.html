@@ -17,18 +17,22 @@
 </head>
 
 <body>
-    <a href="index.html"><img src="Perkins_Weather.jpg" alt="Weather Icon" width="100" style="position: absolute; top: 15px; left: 15px; border: 2px solid black; border-radius: 15px;"></a>
-    <h1 style="text-align: center;">Springfield Weather</h1> <img src="Springfeild_Location.png" alt="Springfield Location" width="200" style="display: block; margin: 0 auto; background-color:rgb(248, 248, 248); border: 2px solid black; border-radius: 15px;">
-    <br>
-    <main>
-        <h1 style="text-align: center;">Forecast for 09/1/2026</h1>
-        <h2>Temperatures:</h2>
-        <p>High: 99°F</p>
-        <p>Low: 75°F</p>
+    <div class="page">
+        <div class="top-bar">
+            <a href="index.html"><img src="Perkins_Weather.jpg" alt="Weather Icon"></a>
+        </div>
 
-        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;">Forecast: You guys can not catch a break with these scorching temperatures! Temperatures back in the upper 90s to low 100s. Drink plenty of water and stay hydrated!</p>
-        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;">Rain: 0%</p>
-    </main>
+        <h1>Springfield Weather</h1>
+        <img src="Springfeild_Location.png" alt="Springfield Location" class="location-img">
+
+        <main>
+            <h1>Forecast for 09/1/2026</h1>
+            <h2 style="text-align: center;">Temperatures:</h2>
+            <p style="text-align: center;">High: 99°F &nbsp;|&nbsp; Low: 75°F</p>
+
+            <div class="info-box"><p>Forecast: You guys can not catch a break with these scorching temperatures! Temperatures back in the upper 90s to low 100s. Drink plenty of water and stay hydrated!</p></div>
+            <div class="info-box"><p>Rain: 0%</p></div>
+        </main>
    
    
    
@@ -47,9 +51,11 @@
         -->
     <script src="date.js"></script>
     <br>
-    <p>Last Updated: 8/31/26 @ 9:30PM</p>
-    <button id="pw-install-btn" onclick="pwInstallApp()" style="display:none; position: fixed; bottom: 15px; right: 15px; z-index: 999; background:#2563eb; color:#fff; border:none; padding:10px 16px; border-radius: 25px; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); cursor:pointer;">📲 Install App</button>
+    <p style="text-align: center;">Last Updated: 8/31/26 @ 9:30PM</p>
+    <p id="pw-ios-hint" class="ios-install-hint">📲 To install this app on iPhone: tap the Share icon, then "Add to Home Screen".</p>
+    <button id="pw-install-btn" onclick="pwInstallApp()" class="install-btn">📲 Install App</button>
     <script src="pwa.js"></script>
+    </div>
 </body>
 
 </html>

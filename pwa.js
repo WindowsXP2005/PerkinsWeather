@@ -33,3 +33,14 @@ window.addEventListener("appinstalled", () => {
   const btn = document.getElementById("pw-install-btn");
   if (btn) btn.style.display = "none";
 });
+
+// iOS Safari has no install-prompt API, so show a manual instruction
+// instead, but only if it's not already installed.
+(function showIosHintIfNeeded() {
+  const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isStandalone = window.navigator.standalone === true;
+  if (isIos && !isStandalone) {
+    const hint = document.getElementById("pw-ios-hint");
+    if (hint) hint.style.display = "block";
+  }
+})();

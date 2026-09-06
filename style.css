@@ -6,14 +6,21 @@
   --img-border: #1e293b;
   --text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   --text-border: 1px solid #ffffff;
+  --card-bg: rgb(3, 63, 63);
 }
 
 * {
   box-sizing: border-box;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
+  padding: 15px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -28,8 +35,159 @@ a:hover {
   color: var(--link-hover);
 }
 
+/* Images never overflow their container, and scale down on small screens */
+img {
+  max-width: 100%;
+  height: auto;
+}
 
+/* Page container so content doesn't stretch too wide on tablets/desktop */
+.page {
+  max-width: 700px;
+  margin: 0 auto;
+}
 
+/* Top bar: logo + page title, replaces the old absolute-positioned corner logo */
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
 
+.top-bar img {
+  width: 70px;
+  flex-shrink: 0;
+  border: 2px solid black;
+  border-radius: 15px;
+}
 
+.top-bar .date-badge {
+  font-size: 0.85rem;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 6px 10px;
+  margin: 0;
+}
 
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+/* Location map images */
+.location-img {
+  display: block;
+  margin: 0 auto;
+  max-width: 220px;
+  width: 100%;
+  background-color: rgb(248, 248, 248);
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+/* Teal forecast/info boxes - used across every page */
+.info-box {
+  border: 2px solid black;
+  padding: 12px;
+  background-color: var(--card-bg);
+  margin: 0 auto 10px auto;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Navigation list on the home page */
+.nav-card {
+  list-style: none;
+  padding: 20px;
+  background-color: var(--card-bg);
+  border: 2px solid black;
+  border-radius: 15px;
+  margin: 15px auto;
+  max-width: 320px;
+  text-align: center;
+}
+
+.nav-card li {
+  margin: 8px 0;
+}
+
+/* Live temperature widget card */
+.temp-widget {
+  font-family: inherit;
+  max-width: 260px;
+  width: 100%;
+  margin: 0 auto 15px auto;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  background-color: rgba(255,255,255,0.05);
+}
+
+.temp-widget .station {
+  font-size: 13px;
+  color: #a3b3c9;
+}
+
+.temp-widget .temp {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 6px 0;
+}
+
+.temp-widget .updated {
+  font-size: 11px;
+  color: #999;
+}
+
+/* Radar / outlook images */
+.full-img {
+  display: block;
+  margin: 0 auto;
+  border: 8px solid #ffffff;
+  border-radius: 15px;
+  max-width: 100%;
+}
+
+.install-btn {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 999;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+
+/* iOS Safari doesn't support the install prompt banner - point those users
+   to Add to Home Screen instead. Shown/hidden via a tiny script in pwa.js. */
+.ios-install-hint {
+  display: none;
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+@media (min-width: 480px) {
+  body {
+    padding: 20px;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+}

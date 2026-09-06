@@ -4,79 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#0f172a" />
-    <link rel="apple-touch-icon" href="icon-192.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Perkins Wx" />
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script src="onesignal-init.js" defer></script>
     <title>Perkins Weather Forecast</title>
     
 </head>
 
 <body>
-    <div class="page">
-        <div class="top-bar">
-            <a href="index.html"><img src="Perkins_Weather.jpg" alt="Weather Icon"></a>
-            <p class="date-badge">Today's Date: <time id="current-date"></time></p>
-        </div>
+    <a href="index.html"><img src="Perkins_Weather.jpg" alt="Weather Icon" width="100" style="position: absolute; top: 15px; left: 15px; border: 2px solid black; border-radius: 15px;"></a>
+    <p class="updated" style="position: absolute; top: 210px; left: 5px; border: 2px solid black; border-radius: 15px;">Today's Date: <time id="current-date"></time></p>
+    <h1 style="text-align: center;">Chicago Illinos Weather</h1> <img src="Illinois-map-boundaries-MAP-locator-cities-CORE.jpg" alt="Chicago Location" width="200" style="display: block; margin: 0 auto; background-color:rgb(248, 248, 248); border: 2px solid black; border-radius: 15px;">
+    <br>
+    <main>
+        <h>Temperatures</h>
+        <p>High: 77°F</p>
+        <p>Low: 63°F</p>
 
-        <h1>Chicago Illinois Weather</h1>
-        <img src="Illinois-map-boundaries-MAP-locator-cities-CORE.jpg" alt="Chicago Location" class="location-img">
-
-        <main>
-            <h1>Forecast for 09/1/2026</h1>
-            <h2 style="text-align: center;">Temperatures:</h2>
-            <p style="text-align: center;">High: 92°F &nbsp;|&nbsp; Low: 75°F</p>
-
-            <div class="info-box"><p>Forecast: A hot start to September! Starting off mostly cloudy, the overcast conditions by afternoon. Temperatures back into the lower 90s, dewpoints in the lower 70s. By night, clouds will clear out beforing returning again wednesday morning.</p></div>
-            <div class="info-box"><p>Rain: 0%</p></div>
-        </main>
-
-        <p style="text-align: center;">Current Temperature:</p>
-        <div class="temp-widget">
-            <div class="station">Chicago Midway Airport (KMDW) (ASOS)</div>
-            <div id="wp-temp" class="temp">--°F</div>
-            <div id="wp-updated" class="updated">Loading...</div>
-        </div>
-
-<script>
-async function updateWestPlainsTemp() {
-  const tempEl = document.getElementById("wp-temp");
-  const updatedEl = document.getElementById("wp-updated");
-
-  try {
-    const res = await fetch("https://api.weather.gov/stations/KMDW/observations/latest", {
-      headers: { "Accept": "application/geo+json" }
-    });
-    if (!res.ok) throw new Error("Request failed: " + res.status);
-    const data = await res.json();
-
-    const celsius = data.properties.temperature.value;
-    if (celsius === null) {
-      tempEl.textContent = "N/A";
-      updatedEl.textContent = "No current reading";
-      return;
-    }
-
-    const fahrenheit = (celsius * 9 / 5 + 32).toFixed(0);
-    tempEl.textContent = fahrenheit + "°F";
-
-    const obsTime = new Date(data.properties.timestamp);
-    updatedEl.textContent = "Updated " + obsTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-  } catch (err) {
-    tempEl.textContent = "--°F";
-    updatedEl.textContent = "Unable to load data";
-    console.error("West Plains weather fetch failed:", err);
-  }
-}
-
-// Load immediately, then refresh every 10 minutes
-updateWestPlainsTemp();
-setInterval(updateWestPlainsTemp, 10 * 60 * 1000);
-</script>
+        <p>Forecast: Morning starting off mostly cloudy. Cloud cover will slowly dissipate through the afternoon, but some clouds may persist. Light breeze from the North-Northwest.</p>
+        <p>Rain: No rain is expected</p>
+    </main>
+   
    
    
 
@@ -93,11 +38,8 @@ setInterval(updateWestPlainsTemp, 10 * 60 * 1000);
         <a href="day1-outlook.html">Day 1 (today) Outlook</a>
         -->
     <script src="date.js"></script>
-    <p style="text-align: center;">Last Updated: 8/31/26 @ 9:25PM</p>
-    <p id="pw-ios-hint" class="ios-install-hint">📲 To install this app on iPhone: tap the Share icon, then "Add to Home Screen".</p>
-    <button id="pw-install-btn" onclick="pwInstallApp()" class="install-btn">📲 Install App</button>
-    <script src="pwa.js"></script>
-    </div>
+    <br>
+    <p>Last Updated: 8/19/26 @ 8:00PM</p>
 </body>
 
 </html>

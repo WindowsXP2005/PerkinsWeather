@@ -9,6 +9,8 @@
 </head>
 
 <body>
+        <h1 style="text-align: center; list-style: none; padding: 15px; background-color:rgb(255, 0, 0); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 15px;">Chicago weather is down until further notice, current information out of date</h1>
+
     <a href="index.html"><img src="Perkins_Weather.jpg" alt="Weather Icon" width="100" style="position: absolute; top: 15px; left: 15px; border: 2px solid black; border-radius: 15px;"></a>
     <p class="updated" style="position: absolute; top: 210px; left: 5px; border: 2px solid black; border-radius: 15px;">Today's Date: <time id="current-date"></time></p>
     <h1 style="text-align: center;">Chicago Illinos Weather</h1> <img src="Illinois-map-boundaries-MAP-locator-cities-CORE.jpg" alt="Chicago Location" width="200" style="display: block; margin: 0 auto; background-color:rgb(248, 248, 248); border: 2px solid black; border-radius: 15px;">
@@ -18,11 +20,57 @@
         <p>High: 77°F</p>
         <p>Low: 63°F</p>
 
-        <p>Forecast: Morning starting off mostly cloudy. Cloud cover will slowly dissipate through the afternoon, but some clouds may persist. Light breeze from the North-Northwest.</p>
-        <p>Rain: No rain is expected</p>
+        <p style="list-style: none; max-width: 400px; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 15px;">Forecast: Morning starting off mostly cloudy. Cloud cover will slowly dissipate through the afternoon, but some clouds may persist. Light breeze from the North-Northwest.</p>
+        <p style="list-style: none; max-width: 200px; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 15px;">Rain: No rain is expected</p>
     </main>
    
-   
+   <h1 style="text-align: left; font-size: 24px;">Current Temperature:</h1>
+        <!-- 
+  West Plains ASOS Current Temperature Widget
+  Pulls live data from the National Weather Service API (station KUNO)
+  Just copy this whole block into your .htm page wherever you want the widget to appear.
+-->
+<div id="wp-weather" style="font-family: Arial, sans-serif; max-width: 260px; padding: 16px; border: 1px solid #ccc; border-radius: 8px; text-align: center;">
+  <div style="font-size: 13px; color: #666;">Chicago, IL (KMDW)(ASOS)</div>
+  <div id="wp-temp" style="font-size: 36px; font-weight: bold; margin: 6px 0;">--°F</div>
+  <div id="wp-updated" style="font-size: 11px; color: #999;">Loading...</div>
+</div>
+
+<script>
+async function updateWestPlainsTemp() {
+  const tempEl = document.getElementById("wp-temp");
+  const updatedEl = document.getElementById("wp-updated");
+
+  try {
+    const res = await fetch("https://api.weather.gov/stations/KMDW/observations/latest", {
+      headers: { "Accept": "application/geo+json" }
+    });
+    if (!res.ok) throw new Error("Request failed: " + res.status);
+    const data = await res.json();
+
+    const celsius = data.properties.temperature.value;
+    if (celsius === null) {
+      tempEl.textContent = "N/A";
+      updatedEl.textContent = "No current reading";
+      return;
+    }
+
+    const fahrenheit = (celsius * 9 / 5 + 32).toFixed(0);
+    tempEl.textContent = fahrenheit + "°F";
+
+    const obsTime = new Date(data.properties.timestamp);
+    updatedEl.textContent = "Updated " + obsTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  } catch (err) {
+    tempEl.textContent = "--°F";
+    updatedEl.textContent = "Unable to load data";
+    console.error("West Plains weather fetch failed:", err);
+  }
+}
+
+// Load immediately, then refresh every 10 minutes
+updateWestPlainsTemp();
+setInterval(updateWestPlainsTemp, 10 * 60 * 1000);
+</script>
    
 
    

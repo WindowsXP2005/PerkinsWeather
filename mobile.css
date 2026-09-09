@@ -1,0 +1,91 @@
+/*
+  Perkins Weather - PHONE-ONLY layout fixes
+  ==========================================
+  This stylesheet is only loaded on screens 700px wide or narrower
+  (see the <link media="(max-width: 700px)"> tag in each HTML page).
+  On desktop, none of this applies - your original layout is untouched.
+
+  The original pages use position: absolute with fixed pixel
+  coordinates, which only makes sense on a wide desktop screen. These
+  rules override that (using !important, since inline styles normally
+  win) so things stack and shrink correctly on a phone instead.
+*/
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+body {
+  padding: 12px !important;
+}
+
+/* Every image scales down to fit instead of forcing a fixed width */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Corner logo: no longer floats over content, sits inline at the top */
+.pw-corner-logo {
+  position: static !important;
+  display: block;
+  width: 70px !important;
+  margin: 0 auto 10px auto !important;
+}
+
+/* Date badge (Chicago / day1-outlook pages): no longer floats mid-page */
+.pw-date-badge {
+  position: static !important;
+  display: block;
+  width: fit-content;
+  margin: 0 auto 10px auto !important;
+  text-align: center;
+}
+
+/* Location map images: centered, capped width instead of stretching */
+.pw-location-img, .pw-map-img {
+  display: block !important;
+  margin: 0 auto !important;
+  max-width: 220px !important;
+  width: 100% !important;
+}
+
+/* Nav menu on the home page: no longer pinned at a fixed offset */
+.pw-nav-list {
+  position: static !important;
+  max-width: 300px;
+  margin: 15px auto !important;
+  padding: 20px !important;
+  text-align: center;
+}
+
+/* Highlighted info banners (heat dome message, forecast summary, etc.) */
+.pw-banner {
+  position: static !important;
+  max-width: 100% !important;
+  margin: 10px auto !important;
+}
+
+/* Forecast/rain text boxes */
+.pw-info-box {
+  max-width: 100% !important;
+}
+
+/* Radar / outlook full-width images */
+.pw-full-img {
+  width: 100% !important;
+  border-width: 6px !important;
+}
+
+/* Live temperature widget cards */
+.pw-temp-widget {
+  max-width: 100% !important;
+  margin: 0 auto 15px auto !important;
+}
+
+/* Header block on the home page needs to be a normal flow container
+   now that its children aren't absolutely positioned */
+.pw-header {
+  display: block;
+}

@@ -4,37 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mobile.css" media="(max-width: 700px)" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Perkins Wx" />
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script src="onesignal-init.js" defer></script>
     <title>Perkins Weather Forecast</title>
     
 </head>
 
 <body>
-        <h1 style="text-align: center; list-style: none; padding: 15px; background-color:rgb(255, 0, 0); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 15px;">Chicago weather is down until further notice, current information out of date</h1>
-
-    <a href="index.html"><img src="Perkins_Weather.jpg" alt="Weather Icon" width="100" style="position: absolute; top: 15px; left: 15px; border: 2px solid black; border-radius: 15px;"></a>
-    <p class="updated" style="position: absolute; top: 210px; left: 5px; border: 2px solid black; border-radius: 15px;">Today's Date: <time id="current-date"></time></p>
-    <h1 style="text-align: center;">Chicago Illinos Weather</h1> <img src="Illinois-map-boundaries-MAP-locator-cities-CORE.jpg" alt="Chicago Location" width="200" style="display: block; margin: 0 auto; background-color:rgb(248, 248, 248); border: 2px solid black; border-radius: 15px;">
+    <a href="index.html"><img src="Perkins_Weather.jpg" alt="Weather Icon" width="100" style="position: absolute; top: 15px; left: 15px; border: 2px solid black; border-radius: 15px;" class="pw-corner-logo"></a>
+    <p class="updated pw-date-badge" style="position: absolute; top: 210px; left: 5px; border: 2px solid black; border-radius: 15px;">Today's Date: <time id="current-date"></time></p>
+    <h1 style="text-align: center;">Chicago Illinos Weather</h1> <img src="Illinois-map-boundaries-MAP-locator-cities-CORE.jpg" alt="Chicago Location" width="200" style="display: block; margin: 0 auto; background-color:rgb(248, 248, 248); border: 2px solid black; border-radius: 15px;" class="pw-location-img">
     <br>
     <main>
-        <h>Temperatures</h>
-        <p>High: 77°F</p>
-        <p>Low: 63°F</p>
+        <h1 style="text-align: center;">Forecast for 09/08/2026</h1>
+        <h2>Temperatures:</h2>
+        <p>High: 83°F</p>
+        <p>Low: 74°F</p>
 
-        <p style="list-style: none; max-width: 400px; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 15px;">Forecast: Morning starting off mostly cloudy. Cloud cover will slowly dissipate through the afternoon, but some clouds may persist. Light breeze from the North-Northwest.</p>
-        <p style="list-style: none; max-width: 200px; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 15px;">Rain: No rain is expected</p>
+        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;" class="pw-info-box">Forecast: Mostly cloudy all day, temperatures will be mild. Rain chances in the morning and dwindle in the afternoon.</p>
+        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;" class="pw-info-box">Rain: 45%</p>
     </main>
-   
-   <h1 style="text-align: left; font-size: 24px;">Current Temperature:</h1>
-        <!-- 
-  West Plains ASOS Current Temperature Widget
-  Pulls live data from the National Weather Service API (station KUNO)
-  Just copy this whole block into your .htm page wherever you want the widget to appear.
--->
-<div id="wp-weather" style="font-family: Arial, sans-serif; max-width: 260px; padding: 16px; border: 1px solid #ccc; border-radius: 8px; text-align: center;">
-  <div style="font-size: 13px; color: #666;">Chicago, IL (KMDW)(ASOS)</div>
-  <div id="wp-temp" style="font-size: 36px; font-weight: bold; margin: 6px 0;">--°F</div>
-  <div id="wp-updated" style="font-size: 11px; color: #999;">Loading...</div>
-</div>
+        <p>Current Temperature:</p>
+        <div class="pw-temp-widget">
+        <div style="font-size: 13px; color: #666;">Chicago Midway Airport (KMDW) (ASOS)</div>
+        <div id="wp-temp" style="font-size: 36px; font-weight: bold; margin: 6px 0;">--°F</div>
+        <div id="wp-updated" style="font-size: 11px; color: #999;">Loading...</div>
+    </div>
 
 <script>
 async function updateWestPlainsTemp() {
@@ -72,6 +74,7 @@ updateWestPlainsTemp();
 setInterval(updateWestPlainsTemp, 10 * 60 * 1000);
 </script>
    
+   
 
    
 
@@ -87,7 +90,7 @@ setInterval(updateWestPlainsTemp, 10 * 60 * 1000);
         -->
     <script src="date.js"></script>
     <br>
-    <p>Last Updated: 8/19/26 @ 8:00PM</p>
+    <p>Last Updated: 8/31/26 @ 9:25PM</p>
 </body>
 
 </html>

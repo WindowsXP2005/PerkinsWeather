@@ -89,3 +89,31 @@ img {
 .pw-header {
   display: block;
 }
+
+.install-btn {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 999;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+
+.ios-install-hint {
+  display: none;
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+}

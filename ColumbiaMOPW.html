@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mobile.css" media="(max-width: 700px)" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Perkins Wx" />
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script src="onesignal-init.js" defer></script>
+    <title>Perkins Weather Forecast</title>
+    
+</head>
+
+<body>
+    <a href="index.html"><img src="Perkins_Weather.jpg" alt="Weather Icon" width="100" style="position: absolute; top: 15px; left: 15px; border: 2px solid black; border-radius: 15px;" class="pw-corner-logo"></a>
+
+
+    <h1 style="text-align: center;">Columbia Weather</h1> <img src="Columbia_Location.png" alt="Columbia Location" width="200" style="display: block; margin: 0 auto; background-color:rgb(248, 248, 248); border: 2px solid black; border-radius: 15px;" class="pw-location-img">
+    <br>
+    <main>
+        <h1 style="text-align: center;">Forecast for 09/09/2026</h1>
+        <h2>Temperatures:</h2>
+        <p>High: 95°F</p>
+        <p>Low: 76°F</p>
+
+        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;" class="pw-info-box">Forecast:Mostly Clear in the morning. Clouds will roll in during the afternoon. A chance of rain and thunderstorms is possible.</p>
+        <p style="border: 2px solid black; padding: 15px; background-color:rgb(3, 63, 63); border: 2px solid black; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 500px;" class="pw-info-box">Rain: 35%</p>
+    </main>
+   
+   
+    <!---The following gives real time updates from the West Plains ASOS Station-->
+        <p>Current Temperature:</p>
+        <div id="wp-weather" style="font-family: Arial, sans-serif; max-width: 260px; padding: 16px; border: 1px solid #ccc; border-radius: 8px; text-align: center;" class="pw-temp-widget">
+  <div style="font-size: 13px; color: #666;">Columbia Regional Airport (KCOU) (ASOS)</div>
+  <div id="wp-temp" style="font-size: 36px; font-weight: bold; margin: 6px 0;">--°F</div>
+  <div id="wp-updated" style="font-size: 11px; color: #999;">Loading...</div>
+</div>
+
+<script>
+async function updateWestPlainsTemp() {
+  const tempEl = document.getElementById("wp-temp");
+  const updatedEl = document.getElementById("wp-updated");
+
+  try {
+    const res = await fetch("https://api.weather.gov/stations/KCOU/observations/latest", {
+      headers: { "Accept": "application/geo+json" }
+    });
+    if (!res.ok) throw new Error("Request failed: " + res.status);
+    const data = await res.json();
+
+    const celsius = data.properties.temperature.value;
+    if (celsius === null) {
+      tempEl.textContent = "N/A";
+      updatedEl.textContent = "No current reading";
+      return;
+    }
+
+    const fahrenheit = (celsius * 9 / 5 + 32).toFixed(0);
+    tempEl.textContent = fahrenheit + "°F";
+
+    const obsTime = new Date(data.properties.timestamp);
+    updatedEl.textContent = "Updated " + obsTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  } catch (err) {
+    tempEl.textContent = "--°F";
+    updatedEl.textContent = "Unable to load data";
+    console.error("West Plains weather fetch failed:", err);
+  }
+}
+
+// Load immediately, then refresh every 10 minutes
+updateWestPlainsTemp();
+setInterval(updateWestPlainsTemp, 10 * 60 * 1000);
+</script>    
+      <br>
+      <br>
+      <a style="list-style: none; padding: 15px;background-color:rgb(3, 63, 63); border: 2px solid black; padding: 15px; margin-bottom: 10px; border-radius: 15px;" href="https://agebb.missouri.edu/weather/realtime/mizzou.asp">Real-time Weather Data @ MIZZOU</a>
+
+
+
+
+
+    <!---
+        <br>
+        <br>
+        <img src="noaaleft.jpg" alt="Day 1 Outlook" style="border: 2px solid black; border-radius: 15px;">
+        <p>A Severe Weather Outlook is issued by the Storm Prediction Center (SPC) for the next 1-8 days.
+        </a>
+        <br>
+        <a href="day1-outlook.html">Day 2 (Tomorrow 08/25/26) Outlook</a>
+
+    <script src="date.js"></script>
+    <br>
+    --->
+</body>
+
+</html>
